@@ -2,8 +2,7 @@ import { Component, OnInit, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EnrollmentService } from '../../enrollment.service';
-import { EnrollmentResponse } from '../../enrollment.models';
-
+import { EnrollmentResponse, EnrollmentStatus } from '../../enrollment.models';
 @Component({
   selector: 'app-enrollment-list',
   standalone: true,
@@ -13,6 +12,7 @@ import { EnrollmentResponse } from '../../enrollment.models';
 })
 export class EnrollmentListComponent implements OnInit {
   private enrollmentService = inject(EnrollmentService);
+  readonly EnrollmentStatus = EnrollmentStatus;
 
   enrollments = signal<EnrollmentResponse[]>([]);
 
