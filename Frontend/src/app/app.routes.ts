@@ -71,6 +71,10 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'profile',
+        loadComponent: () => import('./features/student/profile/profile').then((m) => m.Profile),
+      },
+      {
         path: '',
         redirectTo: 'courses',
         pathMatch: 'full',
