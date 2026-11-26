@@ -16,6 +16,7 @@ export const routes: Routes = [
     canActivate: [authGuard, roleGuard],
     data: { role: 'Administrator' },
     loadComponent: () => import('./layouts/admin-layout/admin-layout').then((m) => m.AdminLayout),
+
     children: [
       {
         path: 'dashboard',
@@ -40,6 +41,13 @@ export const routes: Routes = [
         loadComponent: () =>
           import('./features/enrollments/admin/enrollment-list/enrollment-list').then(
             (m) => m.EnrollmentListComponent,
+          ),
+      },
+      {
+        path: 'cancellations',
+        loadComponent: () =>
+          import('./features/cancellations/admin/admin-cancellations').then(
+            (m) => m.AdminCancellations,
           ),
       },
     ],
@@ -70,9 +78,17 @@ export const routes: Routes = [
             (m) => m.MyEnrollments,
           ),
       },
+
       {
         path: 'profile',
         loadComponent: () => import('./features/student/profile/profile').then((m) => m.Profile),
+      },
+      {
+        path: 'cancellations',
+        loadComponent: () =>
+          import('./features/cancellations/student/student-cancellations').then(
+            (m) => m.StudentCancellations,
+          ),
       },
       {
         path: '',
