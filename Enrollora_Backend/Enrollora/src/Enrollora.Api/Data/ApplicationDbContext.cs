@@ -67,11 +67,15 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
             .WithMany(x => x.CancellationRequests)
             .HasForeignKey(x => x.EnrollmentId)
             .OnDelete(DeleteBehavior.Restrict);
-
+            
         modelBuilder.Entity<Enrollment>()
-            .HasIndex(x => new { x.StudentId, x.CourseId, x.Status });
-
+            .HasIndex(x => new { x.StudentId, x.CourseId })
+            .IsUnique()
+            .HasFilter("[Status] = 0");
+            
         modelBuilder.Entity<CancellationRequest>()
-            .HasIndex(x => new { x.EnrollmentId, x.Status });
+            .HasIndex(x => x.EnrollmentId)
+            .IsUnique()
+            .HasFilter("[Status] = 0");
     }
 }

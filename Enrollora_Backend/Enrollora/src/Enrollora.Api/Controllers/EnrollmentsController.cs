@@ -41,7 +41,7 @@ public sealed class EnrollmentsController(IEnrollmentService service) : Controll
         CreateEnrollmentRequest request, CancellationToken ct)
     {
         var result = await service.CreateAsync(CurrentStudentId(), request.CourseId, ct);
-        return CreatedAtAction(nameof(GetMine), result);
+        return CreatedAtAction(nameof(GetMine), null, result);
     }
 
     private int CurrentStudentId() =>

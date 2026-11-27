@@ -1,5 +1,5 @@
 using Enrollora.Api.Models;
-
+using System.ComponentModel.DataAnnotations;
 namespace Enrollora.Api.DTOs;
 
 public sealed class EnrollmentQuery : PaginationQuery
@@ -13,6 +13,7 @@ public sealed class EnrollmentQuery : PaginationQuery
 
 public sealed class CreateEnrollmentRequest
 {
+    [Range(1, int.MaxValue, ErrorMessage = "CourseId must be greater than 0.")]
     public int CourseId { get; set; }
 }
 
